@@ -129,20 +129,11 @@ flowchart TB
 - EKS: one cluster in auto mode
 - ECR: one repo.
 - S3: one bucket.
-- Aurora Serverless v2 (min capacity) + pgvector.
-- Bedrock: same as Option 1.
-- Ingress: AWS Load Balancer Controller
+- Aurora PorgreSQL + pgvector.
+- Bedrock:
+- Ingress: AWS Load Balancer Controller 
 - IRSA for permissions
 - Endpoints for Bedrock and S3
-- 
-
-### Best practices (Option 2)
-
-- IRSA (IAM Roles for Service Accounts) for S3 and Bedrock; Aurora in same VPC (no IAM for DB, use username/password in Secrets Manager).
-- Private node group; NAT for egress.
-- Bedrock and Aurora in same VPC; Bedrock VPC endpoint where available.
-- HPA for the Go deployment; cluster autoscaler.
-- Ingress with TLS; consider cert-manager + ACM.
 
 ---
 
@@ -257,7 +248,6 @@ flowchart LR
 ---
 
 **References**
-
 - [Amazon S3 Vectors](https://aws.amazon.com/s3/features/vectors/) — product overview  
 - [Working with S3 Vectors and vector buckets](https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-vectors.html) — user guide  
 - [AWS SDK for Go v2 — s3vectors](https://pkg.go.dev/github.com/aws/aws-sdk-go-v2/service/s3vectors) — Go client for S3 Vectors
