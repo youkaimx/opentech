@@ -71,12 +71,6 @@ flowchart TB
     end
 ```
 
-### Data flow (Option 1)
-
-1. **Ingest:** Upload document to S3 → trigger (EventBridge + Lambda or ECS task) or polling by Go app → chunk → Bedrock Embed → put vectors into S3 Vectors (vector index).
-2. **Query:** User → ALB → ECS (Go) → embed query (Bedrock) → S3 Vectors `QueryVectors` (similarity search) → retrieve top-k → Bedrock LLM with context → response.
-
-
 ### Summary for Infrastructure
 - Application Load Balancer for entry point to ECS task/service
 - ECS Fargate: 1 task, single AZ, private subnets
